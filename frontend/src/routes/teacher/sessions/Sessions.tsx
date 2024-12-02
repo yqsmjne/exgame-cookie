@@ -6,7 +6,45 @@ import { SessionsDone } from "./sessionComponents/SessionsDone";
 import Box from "@mui/material/Box";
 import { useNavigate } from "react-router";
 
+import React, { useState, useEffect } from "react";
+
 export const Sessions: React.FC = () => {
+  // Stato per memorizzare i dati
+  const [data, setData] = useState([]);
+  // Stato per gestire gli errori
+  const [error, setError] = useState(null);
+  // Stato per il caricamento
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Funzione asincrona per recuperare i dati
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/subscriptions/673b2ad683c4021eb87301c7", {
+          method: "GET", // Specifica il metodo HTTP (GET, POST, PUT, DELETE, etc.)
+          headers: {
+            "Content-Type": "application/json", // Specifica il tipo di contenuto
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const result = await response.json(); // Parsing della risposta JSON
+        setData(result); // Aggiornamento dello stato con i dati ricevuti
+      } catch (err) {
+        setError(err); // Gestione degli errori
+      } finally {
+        setLoading(false); // Fine caricamento
+      }
+    };
+
+    fetchData(); // Chiamata alla funzione
+  }, []);
+
+  console.log(data);
+
   const navigate = useNavigate();
 
   return (

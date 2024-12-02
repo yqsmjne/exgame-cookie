@@ -8,7 +8,6 @@ import { useFetch } from "../../lib/useFetch";
  * Chiama l'api GET /users/me, che restituisce l'utente loggato, oppure un 401
  */
 export const TeacherGuard: React.FC = () => {
-  console.log("you must be a teacher");
 
   const [authenticated, setAuthenticated] = useState<boolean | "loading">(
     "loading",
