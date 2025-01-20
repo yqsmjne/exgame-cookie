@@ -30,6 +30,7 @@
   },
   "volta": {
     "node": "20.18.0"
+<<<<<<< HEAD
   },
   "devDependencies": {
     "prettier": "^3.3.3"
@@ -370,5 +371,7 @@
     "yallist": "^3.1.1",
     "ylru": "^1.4.0",
     "yocto-queue": "^0.1.0"
+=======
+>>>>>>> de44e03b67d7d620043c07db69cce9c424a12590
   }
 }
